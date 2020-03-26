@@ -1,0 +1,57 @@
+app.use(express.json())  // Middleware que analisa se o content-Type solicitado (Request) corresponde ao tipo json
+
+/*
+    Rota / Recurso
+*/
+
+/*
+    GET: Buscar uma informação do back-end
+    POST: Criar uma informação no back-end
+    PUT: Alterar uma informação no back-end
+    DELETE: Eliminar/Remover uma informação no back-end 
+*/ 
+
+/*
+    Tipos de parâmetros:
+
+    Query Params: Parâmetros nomeados enviados na rota após o "?" utizados geralmente para filtros, paginação, etc...
+    Route Params: Parâmetros utilizados para identificar recursos
+    Request Body: Corpo da requisição, utilizado para criar ou alterar recursos
+*/
+
+app.post('/users', (request, response) => { 
+    /* 
+        request contem todos os parâmetros enviados na query params e
+        são acessados com o request.query enquanto que os Route params são 
+        são acessados com o request.params
+    Exemplos de Query params:
+        http://localhost:3333/users?name=Joaquim
+        http://localhost:3333/users?name=Joaquim&idade=58
+
+    Exemplo de Route params:
+        http://localhost:3333/users/1
+
+    Exemplo de request body
+        http://localhost:3333/users    
+    */
+
+    /*
+        Base de dados
+        SQL - MySQL, SQLite, PostgreSQL, Oracle, SQLServer,...
+        NoSQL - MongoDB, CouchDB,...
+    */
+    //return response.send('Olá Mundooooooo!!!!!')
+
+    //const query = request.query   // aceder aos query params
+    //const params = request.params //            Route params
+    const body = request.body       //            Request body
+
+    //console.log(query)        // Query Params - { name: 'Joaquim' } | { name: 'Joaquim', idade: '58' }
+    //console.log(params)       // Route params - { id: '1' }
+    console.log(body)           // Request Body - { name: 'Joaquim Sancha', idade: 58 }
+
+    return response.json({
+        evento: 'Semana Omnistack 11.0',
+        aluno : 'Joaquim Sancha'
+    })
+})
